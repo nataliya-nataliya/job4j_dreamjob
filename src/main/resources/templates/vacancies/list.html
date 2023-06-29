@@ -21,6 +21,7 @@
                     <a class="nav-item nav-link" href="/">Main</a>
                     <a class="nav-item nav-link active" th:href="@{/vacancies}">Vacancies</a>
                     <a class="nav-item nav-link" th:href="@{/candidates}">Candidates</a>
+                    <a class="nav-item nav-link" th:href="@{/vacancies/create}">Create vacancy</a>
                 </div>
             </div>
         </div>
@@ -32,7 +33,6 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name of vacancy</th>
-                    <th scope="col">Description</th>
                     <th scope="col">Date of creation</th>
                 </tr>
                 </thead>
@@ -40,7 +40,6 @@
                 <tr th:each="vacancy: ${vacancies}">
                     <td th:text="${vacancy.id}" />
                     <td th:text="${vacancy.title}" />
-                    <td th:text="${vacancy.description}"/>
                     <td th:text="${#temporals.format(vacancy.creationDate, 'yyyy-MM-dd HH:mm:ss')}"/>
                 </tr>
                 </tbody>
