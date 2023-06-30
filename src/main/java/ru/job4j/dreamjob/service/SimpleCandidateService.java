@@ -10,6 +10,7 @@ import java.util.Optional;
 @Service
 public class SimpleCandidateService implements CandidateService {
     private final CandidateRepository candidateRepository;
+
     private SimpleCandidateService(CandidateRepository candidateRepository) {
         this.candidateRepository = candidateRepository;
     }

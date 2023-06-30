@@ -30,7 +30,6 @@ public class MemoryVacancyRepository implements VacancyRepository {
                 LocalDateTime.of(2023, 6, 28, 9, 50, 0)));
     }
 
-
     @Override
     public Vacancy save(Vacancy vacancy) {
         vacancy.setId(nextId++);
