@@ -14,7 +14,6 @@ public class CandidateController {
     public CandidateController(CandidateService candidateService) {
         this.candidateService = candidateService;
     }
-    //private final CandidateService candidateService = SimpleCandidateService.getInstance();
 
     @GetMapping
     public String getAll(Model model) {
