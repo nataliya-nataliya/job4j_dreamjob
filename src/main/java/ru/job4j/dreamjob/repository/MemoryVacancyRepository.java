@@ -20,17 +20,17 @@ public class MemoryVacancyRepository implements VacancyRepository {
 
     private MemoryVacancyRepository() {
         save(new Vacancy(0, "Intern Java Developer", "Job description Intern Java Developer",
-                LocalDateTime.of(2023, 6, 28, 14, 30, 0), true, 1));
+                LocalDateTime.of(2023, 6, 28, 14, 30, 0), true, 1, 0));
         save(new Vacancy(0, "Junior Java Developer", "Job description Junior Java Developer",
-                LocalDateTime.of(2023, 5, 28, 20, 0, 0), true, 3));
+                LocalDateTime.of(2023, 5, 28, 20, 0, 0), true, 3, 0));
         save(new Vacancy(0, "Junior+ Java Developer", "Job description Junior+ Java Developer",
-                LocalDateTime.of(2023, 6, 28, 14, 20, 0), true, 2));
+                LocalDateTime.of(2023, 6, 28, 14, 20, 0), true, 2, 0));
         save(new Vacancy(0, "Middle Java Developer", "Job description Middle Java Developer",
-                LocalDateTime.of(2023, 6, 27, 14, 30, 0), false, 1));
+                LocalDateTime.of(2023, 6, 27, 14, 30, 0), false, 1, 0));
         save(new Vacancy(0, "Middle+ Java Developer", "Job description Middle+ Java Developer",
-                LocalDateTime.of(2023, 6, 28, 10, 10, 0), true, 1));
+                LocalDateTime.of(2023, 6, 28, 10, 10, 0), true, 1, 0));
         save(new Vacancy(0, "Senior Java Developer", "Job description Senior Java Developer",
-                LocalDateTime.of(2023, 6, 28, 9, 50, 0), true, 3));
+                LocalDateTime.of(2023, 6, 28, 9, 50, 0), true, 3, 0));
     }
 
     @Override
@@ -50,7 +50,7 @@ public class MemoryVacancyRepository implements VacancyRepository {
         return vacancies.computeIfPresent(vacancy.getId(), (id, oldVacancy)
                 -> new Vacancy(oldVacancy.getId(), vacancy.getTitle(),
                 vacancy.getDescription(), vacancy.getCreationDate(),
-                vacancy.getVisible(), vacancy.getCityId())) != null;
+                vacancy.getVisible(), vacancy.getCityId(), vacancy.getFileId())) != null;
     }
 
     @Override
