@@ -33,9 +33,11 @@ public class CandidateController {
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute Candidate candidate, @RequestParam MultipartFile file, Model model) {
+    public String create(@ModelAttribute Candidate candidate, @RequestParam MultipartFile file,
+                         Model model) {
         try {
-            candidateService.save(candidate, new FileDto(file.getOriginalFilename(), file.getBytes()));
+            candidateService.save(candidate, new FileDto(file.getOriginalFilename(),
+                    file.getBytes()));
             return "redirect:/candidates";
         } catch (Exception exception) {
             model.addAttribute("message", exception.getMessage());
@@ -56,9 +58,11 @@ public class CandidateController {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute Candidate candidate, @RequestParam MultipartFile file, Model model) {
+    public String update(@ModelAttribute Candidate candidate, @RequestParam MultipartFile file,
+                         Model model) {
         try {
-            var isUpdated = candidateService.update(candidate, new FileDto(file.getOriginalFilename(), file.getBytes()));
+            var isUpdated = candidateService.update(candidate,
+                    new FileDto(file.getOriginalFilename(), file.getBytes()));
             if (!isUpdated) {
                 model.addAttribute("message", "Candidate with the specified ID was not found");
                 return "errors/404";
