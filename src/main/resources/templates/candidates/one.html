@@ -35,8 +35,8 @@
                 </div>
                 <div class="col-9">
                     <div class="mb-3">
-                        <label for="title" class="form-label"><b>Description</b></label>
-                        <input type="text" class="form-control" id="title" name="title" th:field="*{name}"
+                        <label for="name" class="form-label"><b>Name</b></label>
+                        <input type="text" class="form-control" id="name" name="name" th:field="*{name}"
                                placeholder="Describe the requirements for the candidate">
                     </div>
                     <div class="mb-3">
@@ -46,8 +46,12 @@
                                     th:field="*{cityId}" th:selected="${city.id==cityId}"></option>
                         </select>
                     </div>
-
                 </div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label"><b>Description</b></label>
+                <textarea class="form-control" id="description" name="description" th:field="*{description}" rows="25"
+                          placeholder="Describe the requirements for the candidate"></textarea>
             </div>
             <div class="mb-3 row">
                 <div class="col-6"></div>
