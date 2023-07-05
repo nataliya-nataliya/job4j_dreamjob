@@ -1,5 +1,7 @@
 package ru.job4j.dreamjob.repository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -9,6 +11,8 @@ import java.util.Optional;
 
 @Repository
 public class Sql2oUserRepository implements UserRepository {
+    static final Logger SQL_2_O_USER_REPOSITORY_LOGGER =
+            LoggerFactory.getLogger(Sql2oUserRepository.class);
     private final Sql2o sql2o;
 
     public Sql2oUserRepository(Sql2o sql2o) {
@@ -17,6 +21,7 @@ public class Sql2oUserRepository implements UserRepository {
 
     @Override
     public Optional<User> save(User user) {
+        Optional<User> rsl = Optional.empty();
         try (var connection = sql2o.open()) {
             var sql = """
                     INSERT INTO users(name, email, password)
@@ -28,10 +33,12 @@ public class Sql2oUserRepository implements UserRepository {
                     .addParameter("password", user.getPassword());
             int generatedId = query.executeUpdate().getKey(Integer.class);
             user.setId(generatedId);
-            return Optional.of(user);
+            rsl = Optional.of(user);
         } catch (Sql2oException exception) {
-            return Optional.empty();
+            SQL_2_O_USER_REPOSITORY_LOGGER.info(
+                    String.format("Unique value violation: %s", user.getEmail()));
         }
+        return rsl;
     }
 
     @Override

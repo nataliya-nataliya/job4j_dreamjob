@@ -29,7 +29,7 @@ class Sql2oUserRepositoryTest {
     }
 
     @AfterEach
-    public void clearVacancies() {
+    public void clearUsers() {
         sql2oUserRepository.deleteAll();
     }
 
